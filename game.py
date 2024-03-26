@@ -32,6 +32,16 @@ def computer_turn(board, player):
             board[pos - 1] = player
             break
 
+def choose_player():
+    while True:
+        player = input("Choose your player ('X' or 'O'): ").upper()
+        if player == 'X':
+            return 1
+        elif player == 'O':
+            return 2
+        else:
+            print("Invalid player choice. Please choose 'X' or 'O'.")
+
 def check_winner(board):
     lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
     for line in lines:
@@ -41,33 +51,26 @@ def check_winner(board):
         return -1  # Draw
     return 0  # Continue playing
 
-def choose_player():
-    while True:
-        choice = input("Choose your player ('X' or 'O'): ").upper()
-        if choice in ('X', 'O'):
-            return 1 if choice == 'X' else 2
-        else:
-            print("Invalid choice. Please choose 'X' or 'O'.")
-
 def main():
     print("Welcome to Tic-Tac-Toe!\n")
-    game_mode = input("Choose game mode ('user' for user vs. computer, 'computer' for computer vs. computer): ")
-    player = choose_player()
+    game_mode = input("Choose game mode ('user' for user vs. computer, 'computer' for computer vs. computer, 'user_user' for user vs. user): ")
+    if game_mode == "user_user":
+        player1 = choose_player()
+        player2 = 3 - player1
+    else:
+        player1 = choose_player()
+        player2 = 2 if player1 == 1 else 1
     
     board = [0] * 9
-    computer_player = 3 - player  # Set the computer player opposite to the user's choice
 
-    print(f"Player 1 (X) {'user' if player == 1 else 'computer'}, Player 2 (O) {'user' if player == 2 else 'computer'}")
+    print(f"Player 1 (X) {'user' if player1 == 1 else 'computer'}, Player 2 (O) {'user' if player2 == 1 else 'computer'}")
 
     while True:
         display_board(board)
-        if player == 1:
-            if game_mode == "user":
-                user_turn(board, player)
-            else:
-                computer_turn(board, player)
+        if player1 == 1:
+            user_turn(board, player1)
         else:
-            computer_turn(board, player)
+            computer_turn(board, player1)
         winner = check_winner(board)
         if winner:
             display_board(board)
@@ -76,7 +79,7 @@ def main():
             else:
                 print(f"Player {winner} wins!")
             break
-        player = 3 - player  # Switch player (1 <-> 2)
+        player1, player2 = player2, player1  # Switch players
 
 if __name__ == "__main__":
     main()
