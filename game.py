@@ -57,6 +57,9 @@ def main():
     if game_mode == "user_user":
         player1 = choose_player()
         player2 = 3 - player1
+    elif game_mode == "computer":
+        player1 = 2
+        player2 = 2
     else:
         player1 = choose_player()
         player2 = 2 if player1 == 1 else 1
