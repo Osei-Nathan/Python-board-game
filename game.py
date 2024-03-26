@@ -1,3 +1,5 @@
+import random
+
 def display_board(board):
     print("Current State of the Board:")
     for i in range(0, 9):
@@ -23,6 +25,13 @@ def user_turn(board, player):
         except ValueError:
             print("Invalid input. Please enter a number.")
 
+def computer_turn(board, player):
+    while True:
+        pos = random.randint(1, 9)
+        if board[pos - 1] == 0:
+            board[pos - 1] = player
+            break
+
 def check_winner(board):
     lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
     for line in lines:
@@ -32,14 +41,20 @@ def check_winner(board):
         return -1  # Draw
     return 0  # Continue playing
 
-def main():
+def main(game_mode):
     print("Welcome to Tic-Tac-Toe!\n")
     board = [0] * 9
     player = 1  # Player 1 starts
 
     while True:
         display_board(board)
-        user_turn(board, player)
+        if player == 1:
+            if game_mode == "user":
+                user_turn(board, player)
+            else:
+                computer_turn(board, player)
+        else:
+            computer_turn(board, player)
         winner = check_winner(board)
         if winner:
             display_board(board)
@@ -51,4 +66,5 @@ def main():
         player = 3 - player  # Switch player (1 <-> 2)
 
 if __name__ == "__main__":
-    main()
+    game_mode = input("Choose game mode ('user' for user vs. computer, 'computer' for computer vs. computer): ")
+    main(game_mode)
