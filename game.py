@@ -41,10 +41,23 @@ def check_winner(board):
         return -1  # Draw
     return 0  # Continue playing
 
-def main(game_mode):
+def choose_player():
+    while True:
+        choice = input("Choose your player ('X' or 'O'): ").upper()
+        if choice in ('X', 'O'):
+            return 1 if choice == 'X' else 2
+        else:
+            print("Invalid choice. Please choose 'X' or 'O'.")
+
+def main():
     print("Welcome to Tic-Tac-Toe!\n")
+    game_mode = input("Choose game mode ('user' for user vs. computer, 'computer' for computer vs. computer): ")
+    player = choose_player()
+    
     board = [0] * 9
-    player = 1  # Player 1 starts
+    computer_player = 3 - player  # Set the computer player opposite to the user's choice
+
+    print(f"Player 1 (X) {'user' if player == 1 else 'computer'}, Player 2 (O) {'user' if player == 2 else 'computer'}")
 
     while True:
         display_board(board)
@@ -66,5 +79,4 @@ def main(game_mode):
         player = 3 - player  # Switch player (1 <-> 2)
 
 if __name__ == "__main__":
-    game_mode = input("Choose game mode ('user' for user vs. computer, 'computer' for computer vs. computer): ")
-    main(game_mode)
+    main()
