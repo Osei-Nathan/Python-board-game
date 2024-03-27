@@ -6,7 +6,7 @@ def display_board(board):
         if i > 0 and i % 3 == 0:
             print()
         if board[i] == 0:
-            print("_", end=" ")
+            print("*", end=" ")
         elif board[i] == 1:
             print("X", end=" ")
         elif board[i] == 2:
@@ -25,22 +25,12 @@ def user_turn(board, player):
         except ValueError:
             print("Invalid input. Please enter a number.")
 
-def computer_turn(board, player):
+def random_player_turn(board, player):
     while True:
         pos = random.randint(1, 9)
         if board[pos - 1] == 0:
             board[pos - 1] = player
             break
-
-def choose_player():
-    while True:
-        player = input("Choose your player ('X' or 'O'): ").upper()
-        if player == 'X':
-            return 1
-        elif player == 'O':
-            return 2
-        else:
-            print("Invalid player choice. Please choose 'X' or 'O'.")
 
 def check_winner(board):
     lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
@@ -53,36 +43,80 @@ def check_winner(board):
 
 def main():
     print("Welcome to Tic-Tac-Toe!\n")
-    game_mode = input("Choose game mode ('uc' for user vs. computer, 'cc' for computer vs. computer, 'uu' for user vs. user): ")
-    if game_mode == "uu":
-        player1 = choose_player()
-        player2 = 3 - player1
-    elif game_mode == "cc":
-        player1 = 2
-        player2 = 2
-    else:
-        player1 = choose_player()
-        player2 = 2 if player1 == 1 else 1
-    
+    game_mode = input("Choose game mode ('user_user' for two users manually playing, 'user_computer' for a user manually playing with random computer input, 'computer_computer' for random two computers playing): ")
     board = [0] * 9
 
-    print(f"Player 1 (X) {'user' if player1 == 1 else 'computer'}, Player 2 (O) {'user' if player2 == 1 else 'computer'}")
-
-    while True:
-        display_board(board)
-        if player1 == 1:
-            user_turn(board, player1)
-        else:
-            user_turn(board, player1)
-        winner = check_winner(board)
-        if winner:
+    if game_mode == "user_user":
+        while True:
             display_board(board)
-            if winner == -1:
-                print("It's a draw!")
-            else:
-                print(f"Player {winner} wins!")
-            break
-        player1, player2 = player2, player1  # Switch players
+            user_turn(board, 1)
+            winner = check_winner(board)
+            if winner:
+                display_board(board)
+                if winner == -1:
+                    print("It's a draw!")
+                else:
+                    print(f"Player {winner} wins!")
+                break
+
+            display_board(board)
+            user_turn(board, 2)
+            winner = check_winner(board)
+            if winner:
+                display_board(board)
+                if winner == -1:
+                    print("It's a draw!")
+                else:
+                    print(f"Player {winner} wins!")
+                break
+
+    elif game_mode == "user_computer":
+        while True:
+            display_board(board)
+            user_turn(board, 1)
+            winner = check_winner(board)
+            if winner:
+                display_board(board)
+                if winner == -1:
+                    print("It's a draw!")
+                else:
+                    print(f"Player {winner} wins!")
+                break
+
+            display_board(board)
+            random_player_turn(board, 2)
+            winner = check_winner(board)
+            if winner:
+                display_board(board)
+                if winner == -1:
+                    print("It's a draw!")
+                else:
+                    print(f"Player {winner} wins!")
+                break
+
+    elif game_mode == "computer_computer":
+        while True:
+            display_board(board)
+            random_player_turn(board, 1)
+            winner = check_winner(board)
+            if winner:
+                display_board(board)
+                if winner == -1:
+                    print("It's a draw!")
+                else:
+                    print(f"Player {winner} wins!")
+                break
+
+            display_board(board)
+            random_player_turn(board, 2)
+            winner = check_winner(board)
+            if winner:
+                display_board(board)
+                if winner == -1:
+                    print("It's a draw!")
+                else:
+                    print(f"Player {winner} wins!")
+                break
 
 if __name__ == "__main__":
     main()
