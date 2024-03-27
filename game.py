@@ -73,7 +73,7 @@ def main():
         if player1 == 1:
             user_turn(board, player1)
         else:
-            computer_turn(board, player1)
+            user_turn(board, player1)
         winner = check_winner(board)
         if winner:
             display_board(board)
