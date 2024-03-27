@@ -53,7 +53,7 @@ def check_winner(board):
 
 def main():
     print("Welcome to Tic-Tac-Toe!\n")
-    game_mode = input("Choose game mode ('user' for user vs. computer, 'computer' for computer vs. computer, 'user_user' for user vs. user): ")
+    game_mode = input("Choose game mode ('uc' for user vs. computer, 'computer' for computer vs. computer, 'user_user' for user vs. user): ")
     if game_mode == "user_user":
         player1 = choose_player()
         player2 = 3 - player1
