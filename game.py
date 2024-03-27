@@ -43,10 +43,10 @@ def check_winner(board):
 
 def main():
     print("Welcome to Tic-Tac-Toe!\n")
-    game_mode = input("Choose game mode ('user_user' for two users manually playing, 'user_computer' for a user manually playing with random computer input, 'computer_computer' for random two computers playing): ")
+    game_mode = input("Choose game mode ('uu' for two users manually playing, 'uc' for a user manually playing with random computer input, 'cc' for random two computers playing): ")
     board = [0] * 9
 
-    if game_mode == "user_user":
+    if game_mode == "uu":
         while True:
             display_board(board)
             user_turn(board, 1)
@@ -70,7 +70,7 @@ def main():
                     print(f"Player {winner} wins!")
                 break
 
-    elif game_mode == "user_computer":
+    elif game_mode == "uc":
         while True:
             display_board(board)
             user_turn(board, 1)
@@ -94,7 +94,7 @@ def main():
                     print(f"Player {winner} wins!")
                 break
 
-    elif game_mode == "computer_computer":
+    elif game_mode == "cc":
         while True:
             display_board(board)
             random_player_turn(board, 1)
