@@ -8,7 +8,7 @@ def display_board(board):
         if board[i] == 0:
             print("*", end=" ")
         elif board[i] == 1:
-            print("A", end=" ")
+            print("X", end=" ")
         elif board[i] == 2:
             print("O", end=" ")
     print()
