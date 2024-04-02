@@ -6,11 +6,11 @@ def display_board(board):
         if i > 0 and i % 3 == 0:
             print()
         if board[i] == 0:
-            print("*", end=" ")
+            print("*", end="  ")
         elif board[i] == 1:
-            print("X", end=" ")
+            print("X", end="  ")
         elif board[i] == 2:
-            print("O", end=" ")
+            print("O", end="  ")
     print()
 
 def user_turn(board, player):
