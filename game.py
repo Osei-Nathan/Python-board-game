@@ -10,7 +10,7 @@ def display_board(board):
         elif board[i] == 1:
             print("X", end="   ")
         elif board[i] == 2:
-            print("Y", end="   ")
+            print("O", end="   ")
     print()
 
 def user_turn(board, player):
