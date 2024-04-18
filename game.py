@@ -46,7 +46,7 @@ def main():
     game_mode = input("Choose game mode ('uu' for two users manually playing, 'uc' for a user manually playing with random computer input, 'cc' for random two computers playing): ")
     board = [0] * 9
 
-    if game_mode == "u":
+    if game_mode == "uu":
         while True:
             display_board(board)
             user_turn(board, 1)
