@@ -46,7 +46,7 @@ def main():
     game_mode = input("Choose game mode ('uu' for two users manually playing, 'uc' for a user manually playing with random computer input, 'cc' for random two computers playing): ")
     board = [0] * 9
 
-    if game_mode == "pvp":
+    if game_mode == "pp":
         while True:
             display_board(board)
             user_turn(board, 1)
@@ -70,7 +70,7 @@ def main():
                     print(f"Player {winner} wins!")
                 break
 
-    elif game_mode == "pvc":
+    elif game_mode == "pc":
         while True:
             display_board(board)
             user_turn(board, 1)
@@ -94,7 +94,7 @@ def main():
                     print(f"Player {winner} wins!")
                 break
 
-    elif game_mode == "cvc":
+    elif game_mode == "cc":
         while True:
             display_board(board)
             random_player_turn(board, 1)
